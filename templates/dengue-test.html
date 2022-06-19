@@ -1,0 +1,589 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dengue Diseases</title>
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="{% static 'fontAwesome/css/all.min.css' %}">
+
+    <!-- custom css -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <style>
+        .header-area {
+            width: 100%;
+            height: 19vh;
+            background: none;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 100% 100%;
+            object-fit: cover;
+            background-attachment: scroll;
+        }
+
+        .result {
+            width: 73%;
+            height: 500px;
+            margin: auto;
+            border-radius: 5px;
+            background-color: purple;
+            color: white;
+        }
+
+        .q {
+        height: 1000px;
+        overflow: scroll;
+    }
+    </style>
+
+</head>
+
+<body>
+
+    <header class="header-area">
+
+        <!-- Nav Area -->
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}">
+                    <h3>Dengue</h3>
+                    <img src="{% static 'images/dengue-logo.png' %}" alt="Icon">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span>
+                        <i class="fa-solid fa-bars-staggered"></i>
+                    </span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'home' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'home' %}">About Diseases</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'home' %}">Symtomps</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'home' %}">Preventation</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Dengue Test</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'home' %}">Team Details</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="result">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div id="result" style="font-size: 73px;text-align: center;"><b>{{ p_result }}</b></div>
+    </div>
+
+    <!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header" style="background-color: purple;color: white;">
+            <h5 class="modal-title" id="staticBackdropLabel">প্রশ্নের উত্তরগুলি ঠিকভাবে পুরন করুন</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <main class="test-form my-5">
+                <div class="container q">
+
+                    <form class="quiz-container" action="{% url 'dengue_test' %}" method="GET">
+                        {% csrf_token %}
+
+                        <div id="quiz-box" class="row align-items-center">
+
+                            <div class="col-md-6 my-3 form-group">
+                                <div class="question text">
+                                    <h5 class="purple-color font-700">আপনার বয়স কত? (How old are you?)</h5>
+                                    <div class="answer d-flex justify-content-start">
+                                        <input type="text" name="age" class="form-control w-50" value="0">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 my-3 form-group">
+                                <div class="question">
+                                    <h5 class="purple-color font-700">আপনার লিঙ্গ কি? (What is your gender?) </h5>
+                                    <div class="answer d-flex gap-5">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="gender"
+                                                id="exampleRadios1" value=1 checked>
+                                            <label class="form-check-label" for="exampleRadios1">
+                                                Male
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="gender"
+                                                id="exampleRadios2" value=0>
+                                            <label class="form-check-label" for="exampleRadios2">
+                                                Female
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="gender"
+                                                id="exampleRadios2" value=0>
+                                            <label class="form-check-label" for="exampleRadios2">
+                                                Others
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 my-3">
+                                <div class="question">
+                                    <h5 class="purple-color font-700">আপনার কি মাথা ব্যথা হয়েছিল? ( Did you had a
+                                        headache?)
+                                    </h5>
+                                    <div class="answer d-flex gap-5">
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="customRadio"
+                                                name="example1" value=1 checked>
+                                            <label class="custom-control-label" for="customRadio">Yes</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="customRadio2"
+                                                name="example1" value=0>
+                                            <label class="custom-control-label" for="customRadio2">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 my-3">
+                                <div class="question">
+                                    <h5 class="purple-color font-700">চোখের কোটরে কি ব্যথা হয়েছিল? ( Was there pain
+                                        in your eye
+                                        socket?)
+                                    </h5>
+                                    <div class="answer d-flex gap-5">
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="customRadio"
+                                                name="example2" value=1 checked>
+                                            <label class="custom-control-label" for="customRadio">Yes</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="customRadio2"
+                                                name="example2" value=0>
+                                            <label class="custom-control-label" for="customRadio2">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 my-3">
+                                <div class="question">
+                                    <h5 class="purple-color font-700">পেশিতে ও গাঁটে ব্যথা অনুভব হয়? (Do you feel
+                                        pain in the muscles and joints?)
+                                    </h5>
+                                    <div class="answer d-flex gap-5">
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="customRadio"
+                                                name="example3" value=1 checked>
+                                            <label class="custom-control-label" for="customRadio">Yes</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="customRadio2"
+                                                name="example3" value=0>
+                                            <label class="custom-control-label" for="customRadio2">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 my-3">
+                                <div class="question">
+                                    <h5 class="purple-color font-700">বমি বমি ভাব বা বমি হয় ? ( Do you hve nausea or
+                                        vomiting?)
+                                    </h5>
+                                    <div class="answer d-flex gap-5">
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="customRadio"
+                                                name="example4" value=1 checked>
+                                            <label class="custom-control-label" for="customRadio">Yes</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="customRadio2"
+                                                name="example4" value=0>
+                                            <label class="custom-control-label" for="customRadio2">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 my-3">
+                                <div class="question">
+                                    <h5 class="purple-color font-700">ত্বকে লালচে ঘামাচি বা লালচে ভাব দেখা দিয়েছে? (
+                                        is rashes are seen on the skin?)
+                                    </h5>
+                                    <div class="answer d-flex gap-5">
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="customRadio"
+                                                name="example5" value=1 checked>
+                                            <label class="custom-control-label" for="customRadio">Yes</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="customRadio2"
+                                                name="example5" value=0>
+                                            <label class="custom-control-label" for="customRadio2">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 my-3">
+                                <div class="question">
+                                    <h5 class="purple-color font-700">মাড়ি দিয়ে রক্তপাত হয় ? (Have there been
+                                        bleeding gums?. )
+                                    </h5>
+                                    <div class="answer d-flex gap-5">
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="customRadio"
+                                                name="example6" value=1 checked>
+                                            <label class="custom-control-label" for="customRadio">Yes</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="customRadio2"
+                                                name="example6" value=0>
+                                            <label class="custom-control-label" for="customRadio2">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 my-3">
+                                <div class="question">
+                                    <h5 class="purple-color font-700">আপনার পায়ের গোড়ালি এবং কব্জিতে কি ব্যথা আছে
+                                        ?( Doyou have pain in your ankles and wrists?)
+                                    </h5>
+                                    <div class="answer d-flex gap-5">
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="customRadio"
+                                                name="example7" value=1 checked>
+                                            <label class="custom-control-label" for="customRadio">Yes</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="customRadio2"
+                                                name="example7" value=0>
+                                            <label class="custom-control-label" for="customRadio2">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 my-3">
+                                <div class="question">
+                                    <h5 class="purple-color font-700">আপনার কি মনে হয় যে হার্টবিট খুব দ্রুত চলছে?(
+                                        Have you feel that the heartbeat is moving too fast?)
+                                    </h5>
+                                    <div class="answer d-flex gap-5">
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="customRadio"
+                                                name="example8" value=1 checked>
+                                            <label class="custom-control-label" for="customRadio">Yes</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="customRadio2"
+                                                name="example8" value=0>
+                                            <label class="custom-control-label" for="customRadio2">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 my-3">
+                                <div class="question">
+                                    <h5 class="purple-color font-700">কফের সাথে কি রক্ত বের হয়েছিল (Does blood ever
+                                        comes through a cough?)
+                                    </h5>
+                                    <div class="answer d-flex gap-5">
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="customRadio"
+                                                name="example9" value=1 checked>
+                                            <label class="custom-control-label" for="customRadio">Yes</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="customRadio2"
+                                                name="example9" value=0>
+                                            <label class="custom-control-label" for="customRadio2">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 my-3">
+                                <div class="question">
+                                    <h5 class="purple-color font-700">প্রস্রাব কি কম হচ্ছে ? (Is your urination less
+                                        than regular?)
+                                    </h5>
+                                    <div class="answer d-flex gap-5">
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="customRadio"
+                                                name="example10" value=1 checked>
+                                            <label class="custom-control-label" for="customRadio">Yes</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="customRadio2"
+                                                name="example10" value=0>
+                                            <label class="custom-control-label" for="customRadio2">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 my-3">
+                                <div class="question">
+                                    <h5 class="purple-color font-700">চুলকানি অনুভব হয়? (Do you feel itchy?)
+                                    </h5>
+                                    <div class="answer d-flex gap-5">
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="customRadio"
+                                                name="example11" value=1 checked>
+                                            <label class="custom-control-label" for="customRadio">Yes</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="customRadio2"
+                                                name="example11" value=0>
+                                            <label class="custom-control-label" for="customRadio2">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 my-3">
+                                <div class="question">
+                                    <h5 class="purple-color font-700">ঘাড়ের নিচে, বুকের উপরের অংশে ব্যাথা অনুভব হয় ?
+                                        (Do you feel Lower neck pain or upper chest pain?)
+                                    </h5>
+                                    <div class="answer d-flex gap-5">
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="customRadio"
+                                                name="example12" value=1 checked>
+                                            <label class="custom-control-label" for="customRadio">Yes</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="customRadio2"
+                                                name="example12" value=0>
+                                            <label class="custom-control-label" for="customRadio2">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 my-3">
+                                <div class="question">
+                                    <h5 class="purple-color font-700">নাক দিয়ে কি রক্ত বের হয় ? (Does blood ever
+                                        comes through a nose?)
+                                    </h5>
+                                    <div class="answer d-flex gap-5">
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="customRadio"
+                                                name="example13" value=1 checked>
+                                            <label class="custom-control-label" for="customRadio">Yes</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="customRadio2"
+                                                name="example13" value=0>
+                                            <label class="custom-control-label" for="customRadio2">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 my-3">
+                                <div class="question">
+                                    <h5 class="purple-color font-700">শ্বাস নিতে সমস্যা হয় ? (do you trouble
+                                        breathing?)
+                                    </h5>
+                                    <div class="answer d-flex gap-5">
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="customRadio"
+                                                name="example14" value=1 checked>
+                                            <label class="custom-control-label" for="customRadio">Yes</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="customRadio2"
+                                                name="example14" value=0>
+                                            <label class="custom-control-label" for="customRadio2">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 my-3">
+                                <div class="question">
+                                    <h5 class="purple-color font-700">আপনার কি সংবেদনশীলতা পরিবর্তন হয়েছে অনুভব হয়?
+                                        (Do you feel sensory change within in you?)
+                                    </h5>
+                                    <div class="answer d-flex gap-5">
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="customRadio"
+                                                name="example15" value=1 checked>
+                                            <label class="custom-control-label" for="customRadio">Yes</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="customRadio2"
+                                                name="example15" value=0>
+                                            <label class="custom-control-label" for="customRadio2">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 my-3">
+                                <div class="question">
+                                    <h5 class="purple-color font-700">আপনার কি কখনো বমির রঙ কালো বের হয়েছে ? (Is
+                                        your vomit color ever black?)
+                                    </h5>
+                                    <div class="answer d-flex gap-5">
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="customRadio"
+                                                name="example16" value=1 checked>
+                                            <label class="custom-control-label" for="customRadio">Yes</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="customRadio2"
+                                                name="example16" value=0>
+                                            <label class="custom-control-label" for="customRadio2">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 my-3">
+                                <div class="question">
+                                    <h5 class="purple-color font-700">আপনার কি আগে কখনও জন্ডিস হয়েছিল? (Have you
+                                        ever had jaundice before?)
+                                    </h5>
+                                    <div class="answer d-flex gap-5">
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="customRadio"
+                                                name="example17" value=1 checked>
+                                            <label class="custom-control-label" for="customRadio">Yes</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="customRadio2"
+                                                name="example17" value=0>
+                                            <label class="custom-control-label" for="customRadio2">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 my-3">
+                                <div class="question">
+                                    <h5 class="purple-color font-700">আপনি কি গত কয়েকদিনে ভ্রমণ করেছেন? (do you
+                                        traveled in past few days)
+                                    </h5>
+                                    <div class="answer d-flex gap-5">
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="customRadio"
+                                                name="example18" value=1 checked>
+                                            <label class="custom-control-label" for="customRadio">Yes</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="customRadio2"
+                                                name="example18" value=0>
+                                            <label class="custom-control-label" for="customRadio2">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 my-3">
+                                <div class="question">
+                                    <h5 class="purple-color font-700">আপনার চোখ কি ফুলে গেছে বা লাল হয়েছে? (Is your
+                                        eye turn swollen or reddish?. )
+                                    </h5>
+                                    <div class="answer d-flex gap-5">
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="customRadio"
+                                                name="example19" value=1 checked>
+                                            <label class="custom-control-label" for="customRadio">Yes</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="customRadio2"
+                                                name="example19" value=0>
+                                            <label class="custom-control-label" for="customRadio2">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 my-3">
+                                <div class="question">
+                                    <h5 class="purple-color font-700">পেশিতে টান বা পেশি শক্ত হয়ে আছে অনুভব হয়? ( Do
+                                        you feel muscle tension or muscle stiffness?)
+                                    </h5>
+                                    <div class="answer d-flex gap-5">
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="customRadio"
+                                                name="example20" value=1 checked>
+                                            <label class="custom-control-label" for="customRadio">Yes</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="customRadio2"
+                                                name="example20" value=0>
+                                            <label class="custom-control-label" for="customRadio2">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-box green-btn white-color ms-5" style="background-color: purple; color: white; border-radius: 5px;">Submit</button>
+                        </div>
+
+                    </form>
+
+
+
+
+
+                    
+
+                </div>
+            </main>
+        </div>
+        
+    </div>
+</div>
+</div>
+
+
+</body>
+
+</html>
+
+{% endblock content %}

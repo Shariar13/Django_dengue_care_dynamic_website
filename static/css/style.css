@@ -1,0 +1,448 @@
+
+:root{
+    --text-color: #888;
+    --black-color: #212121;
+    --yellow-color: #f8aa22;
+    --green-color: #8bc34a;
+    --pink-color: #db346d;
+    --blue-color: #546ef1;
+    --purple-color: #8D3FD0;
+    --red-color: #D31027;
+    --ash-color: #f5f5f5;
+    --white-color: #fff;
+}
+
+body{
+    font-family: sans-serif;
+}
+a{
+    text-decoration: none;
+    display: inline-block;
+    color: var(--black-color);
+    font-size: 14px;
+    transition: all .5s;
+}
+a:hover{
+    text-decoration: none;
+    color: var(--black-color);
+}
+.font-600{
+    font-weight: 600;
+}
+.font-700{
+    font-weight: 700;
+}
+.font-800{
+    font-weight: 800;
+}
+.font-3rem{
+    font-size: 2.5rem;
+}
+p{
+    color: var(--text-color);
+}
+.text-color{
+    color: var(--text-color);
+}
+.pink-color{
+    color: var(--pink-color);
+}
+.yellow-color{
+    color: var(--yellow-color);
+}
+.black-color{
+    color: var(--black-color);
+}
+.white-color{
+    color: var(--white-color);
+}
+.purple-color{
+    color: var(--purple-color);
+}
+.green-color{
+    color: var(--green-color);
+}
+.red-color{
+    color: var(--red-color);
+}
+.green-btn{
+    background: var(--green-color);
+}
+.pink-btn{
+    background: var(--pink-color);
+}
+.blue-btn{
+    background: var(--blue-color);
+}
+.purple-btn{
+    background: var(--purple-color);
+}
+.box-style{
+    box-shadow: -1px 0px 43px 0px rgb(0 0 0 / 14%);
+    padding: 30px;
+    border-radius: 10px;
+}
+.btn-box{
+    padding: 10px 25px;
+    border-radius: 50px;
+}
+
+/*  header - area */
+
+.header-area{
+    width: 100%;
+    height: 100vh;
+    background: url('../images/banner-1.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    object-fit: cover;
+    background-attachment: scroll;
+}
+.header-area .navbar-brand img{
+    width: 60px;
+    height: auto;
+}
+.header-area .navbar-brand h3{
+    color: var(--purple-color);
+    font-weight: 700;
+}
+.navbar .navbar-nav .nav-link{
+    color: var(--black-color);
+    font-weight: 600;
+    margin: 0 15px;
+    border-bottom: 2px solid transparent;
+    width: fit-content;
+    transition: all .4s;
+}
+.navbar .navbar-nav .nav-link:hover{
+    /* border-bottom: 2px solid var(--purple-color); */
+    color: var(--purple-color);
+}
+.navbar .navbar-toggler{
+    border: none;
+    font-size: 28px;
+    color: var(--purple-color);
+    outline: none;
+    box-shadow: none;
+}
+
+/*  home area */
+
+.home-content h2{
+    font-size: 3rem;
+    color: var(--black-color);
+}
+.home-content h1{
+    color: var(--purple-color);
+    font-size: 4rem;
+}
+.home-content a{
+    letter-spacing: 2px;
+    font-size: 14px;
+    border: 1px solid transparent;
+    transition: all .5s ease-out;
+}
+.home-content a:hover{
+    color: var(--black-color);
+    background: transparent;
+    border: 1px solid var(--purple-color);
+}
+
+/* about diseases */
+
+.diseases-content img{
+    width: 90px;
+    height: 90px;
+}
+.diseases-content{
+    width: 96%;
+    background: var(--white-color);
+    transition: transform .5s;
+}
+.diseases-content a:hover{
+    color: var(--white-color);
+}
+.diseases-content:hover{
+    transform: translateY(-20px);
+}
+.green-shadow:hover{
+    box-shadow: 0px 2px 15px -2px #8bc34ad6;
+}
+.pink-shadow:hover{
+    box-shadow: 0px 2px 15px -2px #db346db0;
+}
+.blue-shadow:hover{
+    box-shadow: 0px 2px 15px -2px #546ef1bf;
+}
+
+/* cases */
+
+.dengue-cases{
+    background: url('../images/banner-2.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 34%;
+    width: 100%;
+    height: 100%;
+    padding: 70px 0px;
+    background-attachment: fixed;
+}
+
+.cases h4{
+    letter-spacing: 2px;
+}
+
+
+
+/*  transmission */
+
+.transmission-content img{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #fff;
+}
+.transmission-content{
+    width: 98%;
+    padding: 20px 30px;
+    min-height: 390px;
+    border-radius: 10px;
+    transition: all .4s;
+}
+.transmission-content:hover{
+    background: #ff001e24;
+}
+.transmission-content p{
+    text-align: justify !important;
+}
+.transmission-content:hover{
+    border-radius: 10px;
+    box-shadow: -1px 0px 43px 0px rgb(0 0 0 / 14%);
+    transform: scale(1);
+}
+
+/* symptoms */
+.symptoms{
+    background-color: var(--ash-color);
+}
+.symptoms-content{
+    position: relative;
+    /* z-index: 100; */
+}
+.symptoms{
+    position: relative;
+    z-index: 1;
+}
+.symptoms-content::before{
+    position: absolute;
+    content: '';
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: url('../images/virus-box-2.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    opacity: 0.1;
+}
+.symptoms-img img{
+    border-radius: 20px;
+    box-shadow: -1px 0px 43px 0px rgb(101 116 227 / 14%);
+}
+
+/* prevent youself */
+.prevent-content img{
+    width: 120px;
+    height: 120px;
+    background-color: #f1efef;
+    border-radius: 100px;
+    padding: 15px;
+    margin: auto;
+    object-fit: cover;
+}
+.prevent-content{
+    border-radius: 10px;
+    background: var(--white-color);
+    padding: 30px 20px;
+    transform: scale(0.9);
+    transition: all .5s cubic-bezier(0.4, 0, 1, 1);
+}
+.prevent-content a{
+    border: 1px solid var(--green-color);
+    transition: all .5s;
+}
+.prevent-content a{
+    font-size: 14px;
+}
+.prevent-content p{
+    min-height: 110px;
+}
+.prevent-content:hover{
+    background: var(--green-color);
+    transform: scale(1);
+}
+.prevent-content:hover a{
+    color: var(--black-color);
+    border-color: var(--white-color);
+    background: var(--white-color);
+    box-shadow: 0px 0px 15px 1px #f5f5dccf;
+}
+.prevent-content:hover p,
+.prevent-content:hover h5{
+    color: var(--ash-color);
+}
+.mos{
+    width: 100px;
+    display: none;
+    transition: 2s;
+    z-index: 1000;
+}
+
+/* contact us */
+.contact-us{
+    position: relative;
+    z-index: 100;
+}
+.contact-us:before{
+    position: absolute;
+    content: '';
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    height: 50%;
+    background: url(../images/contact-bg.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    opacity: 0.1;     
+}
+#contactUS-form .form-control{
+    border: 0;
+    /* display: inline-block; */
+}
+.form-control:focus{
+    box-shadow: none;
+}
+#contactUS-form label{
+    border-right: 1px solid #707070;
+    height: fit-content;
+    width: 30px;
+    padding-right: 2px;
+    font-size: 18px;
+}
+.form-input{
+    border: 1px solid #8d3fd069;
+    border-radius: 10px;;
+    margin-bottom: 10px;
+    padding: 0px 12px;
+    width: 48%;
+}
+#contactUS-form .message-icon{
+    border: 0;
+    margin-top: 7px;
+}
+.contact-us img{
+    object-fit: cover;
+}
+.right-side{
+    width: 40%;
+}
+.send-btn{
+    border: 1px solid transparent;
+}
+.send-btn:hover{
+    color: var(--black-color);
+    background: transparent;
+    border: 1px solid var(--purple-color);
+}
+
+/* footer area */
+
+.footer-about a{
+    background: linear-gradient(47deg, rgba(161,88,237,1) 0%, rgba(141,63,208,0.39539565826330536) 100%);
+    opacity: 0.6;
+    padding: 8px 14px;
+    font-size: 16px;
+    border-radius: 100%;
+    color: var(--white-color);
+    transition: .4s;
+}
+.footer-about a:hover{
+    opacity: 1;
+}
+.links a{
+    color: var(--text-color);
+}
+.links span{
+    color: var(--pink-color);
+    margin-right: 10px;
+}
+.links a:hover{
+    color: var(--red-color);
+}
+
+
+/* others */
+
+.navbar.fixed-top{
+    background: var(--white-color);
+    box-shadow: 5px 5px 15px 0 rgb(31 31 31 / 7%);
+    padding: 0;
+    transition: all .4s ease;
+}
+.navbar .navbar-nav .nav-link.active{
+    color: var(--purple-color);
+}
+
+@media only screen and (max-width: 991px) {
+
+    /* header */
+    .header-area .navbar .nav-link{
+        float: right;
+    }
+  }
+
+
+  /* team */
+
+  .test-header{
+      background: url(../images/banner-2.jpg);
+  }
+
+
+  /* test form */
+
+  #qstn0{
+      border: 0;
+      border-radius: 0;
+      border-bottom: 1px solid var(--purple-color);
+  }
+
+  .slide{
+    position: absolute;
+    left: 0%;
+    top: 0px;
+    /* width: 100%; */
+
+
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+  .active-slide{
+    opacity: 1;
+    z-index: 2;
+  }
+  .quiz-container{
+    position: relative;
+    height: 150px;
+    margin-top: 40px;
+  }
+  .test-form .btn{
+    text-align: center;
+  }
