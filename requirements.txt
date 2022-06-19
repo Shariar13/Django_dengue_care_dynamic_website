@@ -8,4 +8,5 @@ sqlparse==0.4.1
 uvicorn==0.13.4
 whitenoise==5.2.0
 gunicorn==20.1.0
-pywin32
+pywin32==223
+sys_platform == "win32"
